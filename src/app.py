@@ -9,7 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.workflow import TweetRewriter
 
-st.set_page_config(page_title="Multi-Model Tweet Rewriter", page_icon="🐦", layout="wide")
+st.set_page_config(page_title="Multi-Model Tweet Rewriter", page_icon="🐦", layout="wide", initial_sidebar_state="collapsed")
 
 CONFIG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src", "config.json")
 
@@ -261,8 +261,8 @@ if st.button("🚀 执行多模型工作流 (Execute Pipeline)", type="primary")
                 
                 if "[REWRITTEN]" in final_output:
                     final_content = final_output.replace("[REWRITTEN]", "").strip()
-                    # Clean up score info if present
-                    if "(Scores:" in final_content:
+                    # Clean up score info if present (Matches both "(Score: XX)" and "(Scores: XX)")
+                    if "(Score" in final_content:
                          # Extract content after scores
                          parts = final_content.split(")", 1)
                          if len(parts) > 1:
@@ -272,7 +272,7 @@ if st.button("🚀 执行多模型工作流 (Execute Pipeline)", type="primary")
                     status_color = "orange"
                 else:
                     final_content = final_output.replace("[PASSED]", "").strip()
-                    if "(Scores:" in final_content:
+                    if "(Score" in final_content:
                          parts = final_content.split(")", 1)
                          if len(parts) > 1:
                              final_content = parts[1].strip()
