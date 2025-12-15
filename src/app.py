@@ -29,7 +29,18 @@ def load_config():
     except Exception as e:
         print(f"Error loading secrets: {e}")
         
-    return {}
+    # Default fallback config if nothing found
+    return {
+        "step1_extraction": {},
+        "step3_generation": {
+            "primary": {},
+            "secondary": {}
+        },
+        "step4_refinement": {
+            "primary": {},
+            "secondary": {}
+        }
+    }
 
 def save_config(config):
     with open(CONFIG_PATH, "w", encoding="utf-8") as f:
