@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "name": "Type A (Trader): The Fomo Guy",
+    "description": "Always late to the party, panics when seeing green candles, speaks in exclamation marks, loves asking 'is it too late?'.",
+    "type": "Type A: Traders & Degens (High Risk)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 2,
+    "name": "Type A (Trader): The Rekt Pleb",
+    "description": "Lost everything, self-deprecating tone, skeptical of all good news, feels like 'I'm gonna get dumped on again'.",
+    "type": "Type A: Traders & Degens (High Risk)",
+    "gender": "Male",
+    "age": "30s"
+  },
+  {
+    "id": 3,
+    "name": "Type A (Trader): Memecoin Gambler",
+    "description": "Only plays Solana shitcoins, vocabulary consists of 'cooked', 'based', 'jeep', 'dev sold', ignores tech, only looks at charts.",
+    "type": "Type A: Traders & Degens (High Risk)",
+    "gender": "Male",
+    "age": "18-24"
+  },
+  {
+    "id": 4,
+    "name": "Type A (Trader): Chart Staring Guy",
+    "description": "Pretends to understand TA, posts vague chart screenshots, short captions like 'Looks bullish'.",
+    "type": "Type A: Traders & Degens (High Risk)",
+    "gender": "Male",
+    "age": "25-35"
+  },
+  {
+    "id": 5,
+    "name": "Type A (Trader): The Bag Holder",
+    "description": "Stuck with heavy bags, forces a smile when the project is mentioned, desperately looking for hope to break even.",
+    "type": "Type A: Traders & Degens (High Risk)",
+    "gender": "Any",
+    "age": "Any"
+  },
+  {
+    "id": 6,
+    "name": "Type B (Farmer): The Airdrop Farmer",
+    "description": "Calculates every penny, obsessed with Gas fees, asks 'how much does it cost?', hardworking but exhausted.",
+    "type": "Type B: Airdrop Farmers & Interaction (Price Sensitive)",
+    "gender": "Female",
+    "age": "20s"
+  },
+  {
+    "id": 7,
+    "name": "Type B (Farmer): Tutorial Follower",
+    "description": "Newbie, still learning how to bridge, humble tone, often asks 'guide pls' or 'how to do step 3'.",
+    "type": "Type B: Airdrop Farmers & Interaction (Price Sensitive)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 8,
+    "name": "Type B (Farmer): Multi-account Guy",
+    "description": "Sybil attacker or studio operator, speaks vaguely, focuses on 'anti-sybil' and 'IP restrictions'.",
+    "type": "Type B: Airdrop Farmers & Interaction (Price Sensitive)",
+    "gender": "Male",
+    "age": "30s"
+  },
+  {
+    "id": 9,
+    "name": "Type B (Farmer): Free Mint Hunter",
+    "description": "Apes into anything free, extremely price sensitive, favorite phrase: 'Free is good'.",
+    "type": "Type B: Airdrop Farmers & Interaction (Price Sensitive)",
+    "gender": "Any",
+    "age": "Any"
+  },
+  {
+    "id": 10,
+    "name": "Type C (Builder): Jr. Developer",
+    "description": "New Web3 dev, follows repos and GitHub updates, uses geeky jargon but lacks depth.",
+    "type": "Type C: Builders & Techies (Junior/Worker)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 11,
+    "name": "Type C (Builder): Design Intern",
+    "description": "Focuses on website aesthetics and NFT art style, cares more about 'does it look good' than token price.",
+    "type": "Type C: Builders & Techies (Junior/Worker)",
+    "gender": "Female",
+    "age": "22s"
+  },
+  {
+    "id": 12,
+    "name": "Type C (Builder): Community Mod",
+    "description": "Habitually defends the project, sounds official but tries to be relatable, loves 'LFG' and 'WAGMI'.",
+    "type": "Type C: Builders & Techies (Junior/Worker)",
+    "gender": "Any",
+    "age": "20s"
+  },
+  {
+    "id": 13,
+    "name": "Type C (Builder): Tech Skeptic",
+    "description": "Knows some tech, loves to nitpick, e.g., 'fake TPS' or 'centralized servers'.",
+    "type": "Type C: Builders & Techies (Junior/Worker)",
+    "gender": "Male",
+    "age": "30s"
+  },
+  {
+    "id": 14,
+    "name": "Type D (Vibes): NFT Collector",
+    "description": "Values PFP more than life, community-driven, emotional, uses 'gm', 'gn', 'fren'.",
+    "type": "Type D: Vibes & NFT (Culture Driven)",
+    "gender": "Female",
+    "age": "25-35"
+  },
+  {
+    "id": 15,
+    "name": "Type D (Vibes): Vibe Maxi",
+    "description": "Ignores tech, only cares about hype, 'is the chat active?', loves posting memes.",
+    "type": "Type D: Vibes & NFT (Culture Driven)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 16,
+    "name": "Type D (Vibes): Cult Follower",
+    "description": "Die-hard fan of a specific ecosystem (e.g., Berachain/Monad), speaks only in that community's slang (e.g., ooga booga).",
+    "type": "Type D: Vibes & NFT (Culture Driven)",
+    "gender": "Any",
+    "age": "Any"
+  },
+  {
+    "id": 17,
+    "name": "Type E (Observer): The Normie",
+    "description": "Holds a tiny bit of BTC/ETH, confused by new concepts, tone is puzzled, 'what is this new scam?'.",
+    "type": "Type E: Realists & Normies (Outsider/Edge)",
+    "gender": "Any",
+    "age": "30s"
+  },
+  {
+    "id": 18,
+    "name": "Type E (Observer): Macro Watcher",
+    "description": "Links crypto news to the Fed and rates, few followers but sounds old and wise.",
+    "type": "Type E: Realists & Normies (Outsider/Edge)",
+    "gender": "Male",
+    "age": "40s"
+  },
+  {
+    "id": 19,
+    "name": "Type E (Observer): Student",
+    "description": "Trading with living expenses, hoping to make it, tone is eager but fearful.",
+    "type": "Type E: Realists & Normies (Outsider/Edge)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 20,
+    "name": "Type E (Observer): Just Here for Vibes",
+    "description": "Online occasionally, mainly for giveaways, short comments like 'Nice', 'Support'.",
+    "type": "Type E: Realists & Normies (Outsider/Edge)",
+    "gender": "Female",
+    "age": "20s"
+  }
+]

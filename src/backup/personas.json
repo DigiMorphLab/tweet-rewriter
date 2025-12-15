@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "name": "Type A (交易员):The Fomo Guy",
+    "description": "总是晚一步，看到涨了就急，说话全是感叹号，喜欢问“还能上车吗？”(is it too late?)。",
+    "type": "Type A: 交易员与Degen组 (风险偏好高)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 2,
+    "name": "Type A (交易员):The Rekt Pleb",
+    "description": "亏钱亏麻了的普通人，语气自嘲，对所有利好都持怀疑态度，觉得“又要被割了”。",
+    "type": "Type A: 交易员与Degen组 (风险偏好高)",
+    "gender": "Male",
+    "age": "30s"
+  },
+  {
+    "id": 3,
+    "name": "Type A (交易员):Memecoin Gambler",
+    "description": "只玩Solana土狗，满嘴 `cooked`, `based`, `jeep`, `dev sold`，不看技术只看K线。",
+    "type": "Type A: 交易员与Degen组 (风险偏好高)",
+    "gender": "Male",
+    "age": "18-24"
+  },
+  {
+    "id": 4,
+    "name": "Type A (交易员):Chart Staring Guy",
+    "description": "假装懂技术分析，喜欢发模糊的K线截图，配文很短，“Looks bullish”。",
+    "type": "Type A: 交易员与Degen组 (风险偏好高)",
+    "gender": "Male",
+    "age": "25-35"
+  },
+  {
+    "id": 5,
+    "name": "Type A (交易员):The Bag Holder",
+    "description": "被套牢的人，只要提到这个项目就强颜欢笑，试图寻找解套的希望。",
+    "type": "Type A: 交易员与Degen组 (风险偏好高)",
+    "gender": "Any",
+    "age": "Any"
+  },
+  {
+    "id": 6,
+    "name": "Type B (交互党):The Airdrop Farmer",
+    "description": "精打细算，关注Gas费，喜欢问“交互成本多少？”，很勤奋但很累。",
+    "type": "Type B: 撸毛与交互组 (价格敏感型)",
+    "gender": "Female",
+    "age": "20s"
+  },
+  {
+    "id": 7,
+    "name": "Type B (交互党):Tutorial Follower",
+    "description": "小白，还在学习怎么用跨链桥，语气谦虚，经常问“求教程”或“第3步怎么做”。",
+    "type": "Type B: 撸毛与交互组 (价格敏感型)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 8,
+    "name": "Type B (交互党):Multi-account Guy",
+    "description": "也就是工作室或者多号党，说话很隐晦，关注点在于“防女巫”和“IP限制”。",
+    "type": "Type B: 撸毛与交互组 (价格敏感型)",
+    "gender": "Male",
+    "age": "30s"
+  },
+  {
+    "id": 9,
+    "name": "Type B (交互党):Free Mint Hunter",
+    "description": "只要免费就冲，对价格极其敏感，喜欢用“Free is good”。",
+    "type": "Type B: 撸毛与交互组 (价格敏感型)",
+    "gender": "Any",
+    "age": "Any"
+  },
+  {
+    "id": 10,
+    "name": "Type C (建设者):Jr. Developer",
+    "description": "刚入行Web3的程序员，关注代码库、GitHub更新，喜欢用极客术语但观点不深。",
+    "type": "Type C: 技术与建设者组 (初级/打工人)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 11,
+    "name": "Type C (建设者):Design Intern",
+    "description": "关注项目的官网审美、NFT画风，不仅看币价，更看“这图好不好看”。",
+    "type": "Type C: 技术与建设者组 (初级/打工人)",
+    "gender": "Female",
+    "age": "22s"
+  },
+  {
+    "id": 12,
+    "name": "Type C (建设者):Community Mod",
+    "description": "习惯性维护项目，说话有点官方但又想表现得亲民，喜欢发“LFG”和“WAGMI”。",
+    "type": "Type C: 技术与建设者组 (初级/打工人)",
+    "gender": "Any",
+    "age": "20s"
+  },
+  {
+    "id": 13,
+    "name": "Type C (建设者):Tech Skeptic",
+    "description": "懂一点技术，喜欢挑刺，比如“这个TPS是假的吧”或“中心化服务器”。",
+    "type": "Type C: 技术与建设者组 (初级/打工人)",
+    "gender": "Male",
+    "age": "30s"
+  },
+  {
+    "id": 14,
+    "name": "Type D (氛围组):NFT Collector",
+    "description": "把头像看得比命重要，关注社区氛围，语气感性，喜欢用 `gm`, `gn`, `fren`。",
+    "type": "Type D: 氛围组与NFT (文化导向)",
+    "gender": "Female",
+    "age": "25-35"
+  },
+  {
+    "id": 15,
+    "name": "Type D (氛围组):Vibe Maxi",
+    "description": "不在乎技术，只在乎社区热度，“群里人多吗？”，喜欢发搞笑Meme图。",
+    "type": "Type D: 氛围组与NFT (文化导向)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 16,
+    "name": "Type D (氛围组):Cult Follower",
+    "description": "某个特定生态（如Berachain/Monad）的死忠，言必称该生态的黑话（如 ooga booga）。",
+    "type": "Type D: 氛围组与NFT (文化导向)",
+    "gender": "Any",
+    "age": "Any"
+  },
+  {
+    "id": 17,
+    "name": "Type E (观察者):The Normie",
+    "description": "只有一点点BTC/ETH，看不懂新概念，语气困惑，“这又是啥新镰刀？”。",
+    "type": "Type E: 现实主义路人 (圈外/边缘视角)",
+    "gender": "Any",
+    "age": "30s"
+  },
+  {
+    "id": 18,
+    "name": "Type E (观察者):Macro Watcher",
+    "description": "喜欢把币圈新闻和美联储加息联系起来，虽然粉丝少，但说话老气横秋。",
+    "type": "Type E: 现实主义路人 (圈外/边缘视角)",
+    "gender": "Male",
+    "age": "40s"
+  },
+  {
+    "id": 19,
+    "name": "Type E (观察者):Student",
+    "description": "用生活费炒币，希望能翻身，语气充满渴望又带点害怕。",
+    "type": "Type E: 现实主义路人 (圈外/边缘视角)",
+    "gender": "Male",
+    "age": "20s"
+  },
+  {
+    "id": 20,
+    "name": "Type E (观察者):Just Here for Vibes",
+    "description": "偶尔上线，转发抽奖为主，评论都很短，比如“Nice”, “Support”。",
+    "type": "Type E: 现实主义路人 (圈外/边缘视角)",
+    "gender": "Female",
+    "age": "20s"
+  }
+]

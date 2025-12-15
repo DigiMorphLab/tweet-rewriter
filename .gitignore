@@ -1,0 +1,4 @@
+src/config.json
+.env
+__pycache__/
+*.pyc
