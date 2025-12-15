@@ -22,12 +22,23 @@ def load_config():
     # Priority 2: st.secrets (Streamlit Cloud Deployment)
     # Check if secrets are available and have the expected structure
     try:
+        # Use simple dict conversion instead of json.dumps
+        # Streamlit secrets might not be fully JSON serializable or have circular refs
         if hasattr(st, "secrets") and "step1_extraction" in st.secrets:
-            # Deep copy secrets to a regular dict since st.secrets is read-only
-            # We use json round-trip for a clean dict
-            return json.loads(json.dumps(st.secrets))
+            # Recursive conversion helper
+            def to_dict(obj):
+                if isinstance(obj, (str, int, float, bool, type(None))):
+                    return obj
+                if hasattr(obj, "items"):
+                    return {k: to_dict(v) for k, v in obj.items()}
+                if isinstance(obj, list):
+                    return [to_dict(i) for i in obj]
+                return obj
+                
+            return to_dict(st.secrets)
+            
     except Exception as e:
-        print(f"Error loading secrets: {e}")
+        st.error(f"Secrets loading error: {e}")
         
     # Default fallback config if nothing found
     return {
@@ -99,8 +110,22 @@ with st.sidebar:
             render_model_config(st.session_state.config["step4_refinement"]["secondary"], "s4_s")
         
     if st.button("💾 保存配置 (Save Config)"):
-        save_config(st.session_state.config)
-        st.success("配置已保存 (Config Saved)")
+        # Note: Saving only works locally. Secrets on cloud are read-only.
+        if os.path.exists(CONFIG_PATH):
+            save_config(st.session_state.config)
+            st.success("配置已保存到本地 config.json")
+        else:
+            st.warning("云端环境无法修改 Secrets 文件，修改仅对本次会话有效。")
+            
+    # Debug: Show current config status (Hidden by default, useful for troubleshooting)
+    with st.expander("🛠️ Debug: Configuration Status"):
+        st.json(st.session_state.config)
+        if hasattr(st, "secrets"):
+            st.write("Secrets detected.")
+            if "step1_extraction" in st.secrets:
+                 st.write("Key 'step1_extraction' found in secrets.")
+        else:
+             st.write("No secrets detected.")
 
     st.divider()
 
