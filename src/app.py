@@ -65,10 +65,8 @@ def get_rewriter():
     """Initialize rewriter with current session config"""
     return TweetRewriter(st.session_state.config)
 
-# --- Main Area ---
-st.title("Web3 Multi-Model Workflow 🚀")
-
-with st.expander("⚙️ 管道配置与人设管理 (Pipeline & Persona Config)", expanded=False):
+# --- Sidebar Configuration ---
+with st.sidebar:
     st.header("⚙️ 管道配置 (Pipeline Config)")
     
     def render_model_config(conf, label_prefix):
@@ -169,6 +167,9 @@ with st.expander("⚙️ 管道配置与人设管理 (Pipeline & Persona Config)
                 st.rerun()
             else:
                 st.error("名称和描述不能为空。")
+
+# --- Main Area ---
+st.title("Web3 Multi-Model Workflow 🚀")
 
 # Dynamic Pipeline Spec Display
 s4_config = st.session_state.config.get("step4_refinement", {})
