@@ -2,3 +2,5 @@ src/config.json
 .env
 __pycache__/
 *.pyc
+
+streamlit_secrets.toml

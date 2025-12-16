@@ -65,111 +65,61 @@ def get_rewriter():
     """Initialize rewriter with current session config"""
     return TweetRewriter(st.session_state.config)
 
-# --- Sidebar Configuration ---
-with st.sidebar:
-    st.header("⚙️ 管道配置 (Pipeline Config)")
-    
-    def render_model_config(conf, label_prefix):
-        with st.container():
-            provider = st.selectbox("Provider", ["openrouter", "openai", "anthropic", "deepseek", "grok"], 
-                                  key=f"{label_prefix}_provider",
-                                  index=["openrouter", "openai", "anthropic", "deepseek", "grok"].index(conf.get("provider", "openrouter")) if conf.get("provider") in ["openrouter", "openai", "anthropic", "deepseek", "grok"] else 0)
-            conf["provider"] = provider
-            
-            model = st.text_input("Model", value=conf.get("model", ""), key=f"{label_prefix}_model")
-            conf["model"] = model
-            
-            api_key = st.text_input("API Key", value=conf.get("api_key", ""), type="password", key=f"{label_prefix}_key")
-            conf["api_key"] = api_key
-            
-            # Auto-set base_url for convenience
-            if provider == "openrouter":
-                conf["base_url"] = "https://openrouter.ai/api/v1"
-            elif provider == "deepseek":
-                conf["base_url"] = "https://api.deepseek.com"
-            elif provider == "grok":
-                conf["base_url"] = "https://api.x.ai/v1"
+# --- Sidebar Removed ---
+# Configuration is now handled via config.json or st.secrets
+# Persona management moved to main area expander
 
-    with st.expander("1. 理解与提取 (Step 1)", expanded=False):
-        render_model_config(st.session_state.config.get("step1_extraction", {}), "s1")
-
-    with st.expander("2. 角色生成 (Step 3)", expanded=False):
-        st.caption("Primary Model")
-        render_model_config(st.session_state.config["step3_generation"].get("primary", {}), "s3_p")
-        st.divider()
-        st.caption("Secondary Model")
-        render_model_config(st.session_state.config["step3_generation"].get("secondary", {}), "s3_s")
-
-    with st.expander("3. 质检与润色 (Step 4)", expanded=False):
-        st.caption("Primary Model")
-        render_model_config(st.session_state.config["step4_refinement"].get("primary", {}), "s4_p")
-        
-        if "secondary" in st.session_state.config["step4_refinement"]:
-            st.divider()
-            st.caption("Secondary Model")
-            render_model_config(st.session_state.config["step4_refinement"]["secondary"], "s4_s")
-        
-    if st.button("💾 保存配置 (Save Config)"):
-        # Note: Saving only works locally. Secrets on cloud are read-only.
-        if os.path.exists(CONFIG_PATH):
-            save_config(st.session_state.config)
-            st.success("配置已保存到本地 config.json")
-        else:
-            st.warning("云端环境无法修改 Secrets 文件，修改仅对本次会话有效。")
-            
-    # Debug: Show current config status (Hidden by default, useful for troubleshooting)
-    with st.expander("🛠️ Debug: Configuration Status"):
-        st.json(st.session_state.config)
-        if hasattr(st, "secrets"):
-            st.write("Secrets detected.")
-            if "step1_extraction" in st.secrets:
-                 st.write("Key 'step1_extraction' found in secrets.")
-        else:
-             st.write("No secrets detected.")
-
-    st.divider()
-
+def render_persona_management():
     # Persona Management
-    st.subheader("👥 人设管理 (Persona Management)")
-    
-    # Initialize rewriter to load personas
-    temp_rewriter = get_rewriter()
-    personas = temp_rewriter.personas
-    
-    # Display existing personas
-    persona_names = [f"{p['id']}. {p['name']}" for p in personas]
-    selected_persona_to_del = st.selectbox("选择要删除的人设", ["None"] + persona_names)
-    
-    if st.button("删除人设 (Delete)"):
-        if selected_persona_to_del != "None":
-            p_id = int(selected_persona_to_del.split(".")[0])
-            temp_rewriter.delete_persona(p_id)
-            st.success(f"已删除人设 ID: {p_id}")
-            st.rerun()
-
-    with st.expander("➕ 添加新人设 (Add New)"):
-        new_name = st.text_input("名称 (Name)", placeholder="e.g. The Fud Guy")
-        new_desc = st.text_area("描述 (Description)", placeholder="e.g. Always bearish...")
-        new_type = st.selectbox("类型 (Type)", [
-            "Type A: Traders & Degens (High Risk)",
-            "Type B: Airdrop Farmers & Interaction (Price Sensitive)",
-            "Type C: Builders & Techies (Junior/Worker)",
-            "Type D: Vibes & NFT (Culture Driven)",
-            "Type E: Realists & Normies (Outsider/Edge)"
-        ])
-        new_gender = st.selectbox("性别 (Gender)", ["Male", "Female", "Any"])
-        new_age = st.text_input("年龄 (Age)", placeholder="20s")
+    with st.expander("👥 Persona Management", expanded=False):
         
-        if st.button("确认添加"):
-            if new_name and new_desc:
-                temp_rewriter.add_persona(new_name, new_desc, new_type, new_gender, new_age)
-                st.success("人设添加成功！")
-                st.rerun()
-            else:
-                st.error("名称和描述不能为空。")
+        # Initialize rewriter to load personas
+        temp_rewriter = get_rewriter()
+        personas = temp_rewriter.personas
+        
+        col_del, col_add = st.columns([1, 1])
+        
+        with col_del:
+            st.subheader("Delete Persona")
+            # Display existing personas
+            persona_names = [f"{p['id']}. {p['name']}" for p in personas]
+            selected_persona_to_del = st.selectbox("Select Persona to Delete", ["None"] + persona_names)
+            
+            if st.button("Delete Persona"):
+                if selected_persona_to_del != "None":
+                    p_id = int(selected_persona_to_del.split(".")[0])
+                    temp_rewriter.delete_persona(p_id)
+                    st.success(f"Deleted Persona ID: {p_id}")
+                    st.rerun()
+
+        with col_add:
+            st.subheader("Add New Persona")
+            new_name = st.text_input("Name", placeholder="e.g. The Fud Guy")
+            new_desc = st.text_area("Description", placeholder="e.g. Always bearish...")
+            new_type = st.selectbox("Type", [
+                "Type A: Traders & Degens (High Risk)",
+                "Type B: Airdrop Farmers & Interaction (Price Sensitive)",
+                "Type C: Builders & Techies (Junior/Worker)",
+                "Type D: Vibes & NFT (Culture Driven)",
+                "Type E: Realists & Normies (Outsider/Edge)"
+            ])
+            new_gender = st.selectbox("Gender", ["Male", "Female", "Any"])
+            new_age = st.text_input("Age", placeholder="20s")
+            
+            if st.button("Confirm Add"):
+                if new_name and new_desc:
+                    temp_rewriter.add_persona(new_name, new_desc, new_type, new_gender, new_age)
+                    st.success("Persona Added Successfully!")
+                    st.rerun()
+                else:
+                    st.error("Name and Description cannot be empty.")
 
 # --- Main Area ---
 st.title("Web3 Multi-Model Workflow 🚀")
+
+# Render Persona Management at the top or bottom? 
+# User wanted sidebar hidden. Let's put it at the bottom or in an expander at top.
+# Let's put it at the very bottom or in a "Settings" section.
 
 # Dynamic Pipeline Spec Display
 s4_config = st.session_state.config.get("step4_refinement", {})
@@ -178,10 +128,10 @@ if "secondary" in s4_config:
     s4_desc += f" + {s4_config['secondary'].get('model', 'Unknown')} (Parallel/Backup)"
 
 st.markdown(f"""
-**工作流LLM大模型:**
-1. **原文分析**: DeepSeek-V3
-2. **内容改写**: Nous Hermes 3 (Fallback: DeepSeek V3)
-3. **AI检测**: {s4_desc}
+**Workflow:**
+1. **Analysis & Extract**: Extract key facts from your tweets
+2. **Rewriting**: Output = Original Text + Rewrite Intent + Persona Library
+3. **Review**: Refine it through a quality gate to ensure it sounds human
 """)
 
 # Initialize rewriter early to get intents
@@ -190,42 +140,42 @@ rewriter = get_rewriter()
 col1, col2 = st.columns([1, 1])
 
 with col1:
-    original_text = st.text_area("原始推文 / 公告 (Original Text)", height=350, placeholder="Paste the official announcement here...")
+    original_text = st.text_area("Original Tweet / Announcement", height=350, placeholder="Paste the official announcement here...")
 
 with col2:
     # Load intents
     intents = rewriter.get_intents()
     intent_options = {i["label"]: i for i in intents}
     
-    selected_intent_label = st.selectbox("改写方向与意图 (Rewrite Intent)", options=list(intent_options.keys()) + ["自定义 (Custom)"])
+    selected_intent_label = st.selectbox("Rewrite Intent", options=list(intent_options.keys()) + ["Custom"])
     
     selected_intent_obj = None
     intent_input_for_extraction = ""
     
-    if selected_intent_label == "自定义 (Custom)":
-        intent_custom = st.text_area("请输入具体意图 (Enter Custom Intent)", height=150, placeholder="例如：'抱怨Gas费太贵'...")
+    if selected_intent_label == "Custom":
+        intent_custom = st.text_area("Enter Custom Intent", height=150, placeholder="e.g. 'Complain about high gas fees'...")
         intent_input_for_extraction = intent_custom
     else:
         selected_intent_obj = intent_options[selected_intent_label]
         intent_input_for_extraction = f"{selected_intent_obj['label']} - {selected_intent_obj['core_logic']}"
         
         # Display details
-        st.info(f"**风格 (Style)**: {selected_intent_obj['style']}\n\n**语气 (Tone)**: {selected_intent_obj['tone']}")
-        with st.expander("查看详细规则 (View Rules)"):
-             st.write(f"**核心逻辑 (Core Logic)**: {selected_intent_obj['core_logic']}")
-             st.write(f"**内容要求 (Content)**: {selected_intent_obj['content_requirements']}")
-             st.write(f"**Prompt指令**: {selected_intent_obj['prompt_instruction']}")
+        st.info(f"**Style**: {selected_intent_obj['style']}\n\n**Tone**: {selected_intent_obj['tone']}")
+        with st.expander("View Detailed Rules"):
+             st.write(f"**Core Logic**: {selected_intent_obj['core_logic']}")
+             st.write(f"**Content Requirements**: {selected_intent_obj['content_requirements']}")
+             st.write(f"**Prompt Instruction**: {selected_intent_obj['prompt_instruction']}")
 
-count = st.slider("生成数量 (Variations)", min_value=1, max_value=10, value=1)
+count = st.slider("Variations", min_value=1, max_value=10, value=1)
 
-if st.button("🚀 执行多模型工作流 (Execute Pipeline)", type="primary"):
+if st.button("🚀 Execute Pipeline", type="primary"):
     if not original_text or not intent_input_for_extraction:
-        st.warning("请同时输入原文和改写意图。")
+        st.warning("Please enter both original text and rewrite intent.")
     else:
         # Container for results
         results_container = st.container()
         
-        with st.status("正在编排多模型管线 (Orchestrating Multi-Model Pipeline)...", expanded=True) as status:
+        with st.status("Orchestrating Multi-Model Pipeline...", expanded=True) as status:
             # Step 1
             st.write("🔍 **Step 1: Understanding & Extraction** (DeepSeek-V3)")
             try:
@@ -320,3 +270,9 @@ if st.button("🚀 执行多模型工作流 (Execute Pipeline)", type="primary")
             logs = rewriter.get_audit_logs()
             df = pd.DataFrame(logs)
             st.dataframe(df, use_container_width=True)
+
+# Add Persona Management at the bottom
+st.divider()
+render_persona_management()
+
+
