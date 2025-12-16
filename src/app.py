@@ -115,7 +115,7 @@ def render_persona_management():
                     st.error("Name and Description cannot be empty.")
 
 # --- Main Area ---
-st.title("Web3 Multi-Model Workflow 🚀")
+st.title("Web3 Tweet Rewriter 🚀")
 
 # Render Persona Management at the top or bottom? 
 # User wanted sidebar hidden. Let's put it at the bottom or in an expander at top.
@@ -128,7 +128,7 @@ if "secondary" in s4_config:
     s4_desc += f" + {s4_config['secondary'].get('model', 'Unknown')} (Parallel/Backup)"
 
 st.markdown(f"""
-**Workflow:**
+**Twitter Rewrite Workflow:**
 1. **Analysis & Extract**: Extract key facts from your tweets
 2. **Rewriting**: Output = Original Text + Rewrite Intent + Persona Library
 3. **Review**: Refine it through a quality gate to ensure it sounds human
@@ -168,7 +168,7 @@ with col2:
 
 count = st.slider("Variations", min_value=1, max_value=10, value=1)
 
-if st.button("🚀 Execute Pipeline", type="primary"):
+if st.button("🚀 Execute rewrite workflow", type="primary"):
     if not original_text or not intent_input_for_extraction:
         st.warning("Please enter both original text and rewrite intent.")
     else:
@@ -271,8 +271,6 @@ if st.button("🚀 Execute Pipeline", type="primary"):
             df = pd.DataFrame(logs)
             st.dataframe(df, use_container_width=True)
 
-# Add Persona Management at the bottom
-st.divider()
-render_persona_management()
+
 
 
